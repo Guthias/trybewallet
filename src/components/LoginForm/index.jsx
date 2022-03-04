@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import emailValidator from '../../helpers/emailValidator';
+import passwordValidator from '../../helpers/passwordValidator';
 
 export default class LoginForm extends Component {
   state = {
@@ -7,8 +9,13 @@ export default class LoginForm extends Component {
     validForm: false,
   }
 
+  isValidForm = () => {
+    const { email, password } = this.state;
+    this.setState({ validForm: emailValidator(email) && passwordValidator(password) });
+  }
+
   handdleChange = ({ target }) => {
-    this.setState({ [target.name]: target.value });
+    this.setState({ [target.name]: target.value }, this.isValidForm);
   }
 
   render() {
