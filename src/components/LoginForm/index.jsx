@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { func } from 'prop-types';
+
 import { userLogin } from '../../actions';
 import emailValidator from '../../helpers/emailValidator';
 import passwordValidator from '../../helpers/passwordValidator';
@@ -26,8 +28,8 @@ class LoginForm extends Component {
     event.preventDefault();
 
     const { email } = this.state;
-    const { userLogin } = this.props;
-    userLogin(email);
+    const { makeUserLogin } = this.props;
+    makeUserLogin(email);
     this.setState({ login: true });
   }
 
@@ -81,9 +83,13 @@ class LoginForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (email) => {
+  makeUserLogin: (email) => {
     dispatch(userLogin(email));
   },
 });
+
+LoginForm.propTypes = {
+  makeUserLogin: func.isRequired,
+};
 
 export default connect(null, mapDispatchToProps)(LoginForm);
