@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { userLogin } from '../../actions';
 import emailValidator from '../../helpers/emailValidator';
 import passwordValidator from '../../helpers/passwordValidator';
 
-export default class LoginForm extends Component {
+class LoginForm extends Component {
   state = {
     email: '',
     password: '',
@@ -55,3 +57,11 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  userLogin: (email) => {
+    dispatch(userLogin(email));
+  },
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,4 +1,4 @@
-import userLogin from './user';
+import { userLogin } from './user';
 
 export {
   userLogin,
