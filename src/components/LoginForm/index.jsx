@@ -20,6 +20,14 @@ class LoginForm extends Component {
     this.setState({ [target.name]: target.value }, this.isValidForm);
   }
 
+  handdleClick = (event) => {
+    event.preventDefault();
+
+    const { email } = this.state;
+    const { userLogin } = this.props;
+    userLogin(email);
+  }
+
   render() {
     const { email, password, validForm } = this.state;
     return (
@@ -50,7 +58,13 @@ class LoginForm extends Component {
           </label>
 
           <div className="login-button-area">
-            <button type="submit" disabled={ !validForm }>Entrar</button>
+            <button
+              type="submit"
+              disabled={ !validForm }
+              onClick={ this.handdleClick }
+            >
+              Entrar
+            </button>
           </div>
         </form>
       </main>
