@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { userLogin } from '../../actions';
 import emailValidator from '../../helpers/emailValidator';
 import passwordValidator from '../../helpers/passwordValidator';
@@ -9,6 +10,7 @@ class LoginForm extends Component {
     email: '',
     password: '',
     validForm: false,
+    login: false,
   }
 
   isValidForm = () => {
@@ -26,10 +28,16 @@ class LoginForm extends Component {
     const { email } = this.state;
     const { userLogin } = this.props;
     userLogin(email);
+    this.setState({ login: true });
   }
 
   render() {
-    const { email, password, validForm } = this.state;
+    const { email, password, validForm, login } = this.state;
+
+    if (login) {
+      return <Redirect to="/wallet" />;
+    }
+
     return (
       <main>
         <form>
