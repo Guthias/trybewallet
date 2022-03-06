@@ -35,7 +35,7 @@ class LoginForm extends Component {
     const { email, password, validForm, login } = this.state;
 
     if (login) {
-      return <Redirect to="/wallet" />;
+      return <Redirect to="/carteira" />;
     }
 
     return (
