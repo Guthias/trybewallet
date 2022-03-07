@@ -3,7 +3,21 @@ import Input from '../Input';
 import Select from '../Select';
 
 class ExpenseInput extends Component {
+  state = {
+    value: '',
+    description: '',
+    currency: '',
+    tag: '',
+    method: '',
+  }
+
+  handdleChange = ({ target }) => {
+    this.setState({ [target.name]: target.value });
+  };
+
   render() {
+    const { value, description, currency, tag, method } = this.state;
+
     return (
       <form>
         <Input
@@ -11,7 +25,7 @@ class ExpenseInput extends Component {
           id="value-input"
           name="value"
           value={ value }
-          handdleChange={ handdleChange }
+          handdleChange={ this.handdleChange }
         />
 
         <Input
@@ -19,7 +33,7 @@ class ExpenseInput extends Component {
           id="description-input"
           name="description"
           value={ description }
-          handdleChange={ handdleChange }
+          handdleChange={ this.handdleChange }
           textArea
         />
 
@@ -28,7 +42,7 @@ class ExpenseInput extends Component {
           id="currency-input"
           name="currency"
           value={ currency }
-          handdleChange={ handdleChange }
+          handdleChange={ this.handdleChange }
           dataList
         />
 
@@ -37,7 +51,7 @@ class ExpenseInput extends Component {
           id="method-input"
           name="method"
           value={ method }
-          handdleChange={ handdleChange }
+          handdleChange={ this.handdleChange }
           textArea
         />
 
@@ -46,7 +60,7 @@ class ExpenseInput extends Component {
           id="tag-input"
           name="tag"
           value={ tag }
-          handdleChange={ handdleChange }
+          handdleChange={ this.handdleChange }
           dataList
         />
       </form>
