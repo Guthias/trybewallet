@@ -10,7 +10,7 @@ export default class Input extends Component {
         { labelText }
         { textArea
           ? (
-            <input
+            <textarea
               id={ id }
               datatest-id={ id }
               name={ name }
@@ -19,7 +19,7 @@ export default class Input extends Component {
             />
           )
           : (
-            <textarea
+            <input
               id={ id }
               datatest-id={ id }
               name={ name }
