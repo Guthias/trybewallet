@@ -8,13 +8,25 @@ export default class Input extends Component {
     return (
       <label htmlFor={ id }>
         { labelText }
-        <input
-          id={ id }
-          datatest-id={ id }
-          name={ name }
-          onChange={ handdleChange }
-          value={ value }
-        />
+        { textArea
+          ? (
+            <input
+              id={ id }
+              datatest-id={ id }
+              name={ name }
+              onChange={ handdleChange }
+              value={ value }
+            />
+          )
+          : (
+            <textarea
+              id={ id }
+              datatest-id={ id }
+              name={ name }
+              onChange={ handdleChange }
+              value={ value }
+            />
+          )}
       </label>
     );
   }
