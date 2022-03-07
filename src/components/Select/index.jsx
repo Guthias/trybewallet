@@ -16,15 +16,19 @@ export default class Select extends Component {
         { labelText }
         { dataList
           ? (
-            <datalist
-              id={ id }
-              datatest-id={ id }
-              name={ name }
-              onChange={ handdleChange }
-              value={ value }
-            >
-              { this.renderOptions() }
-            </datalist>
+            <>
+              <input
+                id={ id }
+                list={ `${id}-list` }
+                datatest-id={ id }
+                name={ name }
+                onChange={ handdleChange }
+                value={ value }
+              />
+              <datalist id={ `${id}-list` }>
+                { this.renderOptions() }
+              </datalist>
+            </>
           )
           : (
             <select

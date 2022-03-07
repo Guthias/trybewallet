@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import createOptions from '../../helpers/createOptions';
 import Input from '../Input';
 import Select from '../Select';
+
+const currencyList = ['USD', 'BRL', 'EUR'];
+const methodList = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
+const tagList = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
 class ExpenseInput extends Component {
   state = {
@@ -43,6 +48,7 @@ class ExpenseInput extends Component {
           name="currency"
           value={ currency }
           handdleChange={ this.handdleChange }
+          options={ createOptions(currencyList) }
           dataList
         />
 
@@ -52,6 +58,7 @@ class ExpenseInput extends Component {
           name="method"
           value={ method }
           handdleChange={ this.handdleChange }
+          options={ createOptions(methodList) }
           textArea
         />
 
@@ -61,6 +68,7 @@ class ExpenseInput extends Component {
           name="tag"
           value={ tag }
           handdleChange={ this.handdleChange }
+          options={ createOptions(tagList) }
           dataList
         />
       </form>
