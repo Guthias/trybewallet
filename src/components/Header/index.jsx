@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { number, string } from 'prop-types';
 
 export default class Header extends Component {
   render() {
+    const { email, currency, expenses } = this.props;
+
     return (
       <header>
         <div>
@@ -20,3 +23,14 @@ export default class Header extends Component {
     );
   }
 }
+
+Header.defaultProps = {
+  currency: 'BRL',
+  expenses: 0,
+};
+
+Header.propTypes = {
+  email: string.isRequired,
+  currency: string,
+  expenses: number,
+};
