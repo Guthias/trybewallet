@@ -71,6 +71,8 @@ class ExpenseInput extends Component {
           options={ createOptions(tagList) }
           dataList
         />
+
+        <button type="submit">Adicionar despesa</button>
       </form>
     );
   }

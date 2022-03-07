@@ -12,7 +12,7 @@ export default class Input extends Component {
           ? (
             <textarea
               id={ id }
-              datatest-id={ id }
+              data-testid={ id }
               name={ name }
               onChange={ handdleChange }
               value={ value }
@@ -21,7 +21,7 @@ export default class Input extends Component {
           : (
             <input
               id={ id }
-              datatest-id={ id }
+              data-testid={ id }
               name={ name }
               onChange={ handdleChange }
               value={ value }

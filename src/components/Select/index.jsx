@@ -20,7 +20,7 @@ export default class Select extends Component {
               <input
                 id={ id }
                 list={ `${id}-list` }
-                datatest-id={ id }
+                data-testid={ id }
                 name={ name }
                 onChange={ handdleChange }
                 value={ value }
@@ -33,7 +33,7 @@ export default class Select extends Component {
           : (
             <select
               id={ id }
-              datatest-id={ id }
+              data-testid={ id }
               name={ name }
               onChange={ handdleChange }
               value={ value }
