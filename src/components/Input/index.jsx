@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { string, func, bool } from 'prop-types';
 
-export default class index extends Component {
+export default class Input extends Component {
   render() {
-    const { labelText, id, name, handdleChange, value } = this.props;
+    const { labelText, id, name, handdleChange, value, textArea } = this.props;
 
     return (
       <label htmlFor={ id }>
@@ -18,3 +19,16 @@ export default class index extends Component {
     );
   }
 }
+
+Input.defaultProps = {
+  textArea: false,
+};
+
+Input.propTypes = {
+  id: string.isRequired,
+  name: string.isRequired,
+  value: string.isRequired,
+  labelText: string.isRequired,
+  handdleChange: func.isRequired,
+  textArea: bool,
+};
