@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../Input';
+import Select from '../Select';
 
 class ExpenseInput extends Component {
   render() {
@@ -20,6 +21,33 @@ class ExpenseInput extends Component {
           value={ description }
           handdleChange={ handdleChange }
           textArea
+        />
+
+        <Select
+          labelText="Moeda"
+          id="currency-input"
+          name="currency"
+          value={ currency }
+          handdleChange={ handdleChange }
+          dataList
+        />
+
+        <Select
+          labelText="Método"
+          id="method-input"
+          name="method"
+          value={ method }
+          handdleChange={ handdleChange }
+          textArea
+        />
+
+        <Select
+          labelText="Categoria"
+          id="tag-input"
+          name="tag"
+          value={ tag }
+          handdleChange={ handdleChange }
+          dataList
         />
       </form>
     );
