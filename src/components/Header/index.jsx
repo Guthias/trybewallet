@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { number, string } from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
     const { email, currency, expenses } = this.props;
 
@@ -24,6 +25,10 @@ export default class Header extends Component {
   }
 }
 
+const mapStateToProps = ({ user }) => ({
+  email: user.email,
+});
+
 Header.defaultProps = {
   currency: 'BRL',
   expenses: 0,
@@ -34,3 +39,5 @@ Header.propTypes = {
   currency: string,
   expenses: number,
 };
+
+export default connect(mapStateToProps)(Header);
