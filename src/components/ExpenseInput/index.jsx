@@ -25,10 +25,9 @@ class ExpenseInput extends Component {
   };
 
   saveExpense = (event) => {
-    const { value, description, currency, tag, method } = this.state;
     const { saveExpense } = this.props;
     event.preventDefault();
-    saveExpense(value, description, currency, tag, method);
+    saveExpense(this.state);
   };
 
   render() {

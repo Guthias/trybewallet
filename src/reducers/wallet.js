@@ -3,15 +3,19 @@ const INITIAL_STATE = {
   expenses: [],
 };
 
-const walletReducer = (state = INITIAL_STATE, action) => {
-  const newExpense = state.expenses;
-
-  switch (action.type) {
+const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
+  switch (type) {
   case '@wallet/create-expense':
-    newExpense.push({ ...action.payload });
     return {
       ...state,
-      expense: newExpense,
+      expenses: [...state.expenses, {
+        id: state.expenses.length,
+        value: payload.value,
+        description: payload.description,
+        currency: payload.currency,
+        method: payload.method,
+        tag: payload.tag,
+      }],
     };
   default:
     return state;
