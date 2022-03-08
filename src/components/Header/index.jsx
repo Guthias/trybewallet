@@ -25,8 +25,9 @@ class Header extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
+  expenses: wallet.expenses.reduce((acc, { value }) => acc + value, 0),
 });
 
 Header.defaultProps = {
