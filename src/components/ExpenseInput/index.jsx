@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { func } from 'prop-types';
+
+import { createExpense } from '../../actions';
 import createOptions from '../../helpers/createOptions';
 import Input from '../Input';
 import Select from '../Select';
@@ -18,6 +22,13 @@ class ExpenseInput extends Component {
 
   handdleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
+  };
+
+  saveExpense = (event) => {
+    const { value, description, currency, tag, method } = this.state;
+    const { saveExpense } = this.props;
+    event.preventDefault();
+    saveExpense(value, description, currency, tag, method);
   };
 
   render() {
@@ -72,10 +83,20 @@ class ExpenseInput extends Component {
           dataList
         />
 
-        <button type="submit">Adicionar despesa</button>
+        <button type="submit" onClick={ this.saveExpense }>Adicionar despesa</button>
       </form>
     );
   }
 }
 
-export default ExpenseInput;
+const mapDispatchToProps = (dispatch) => ({
+  saveExpense: (...expenseValue) => {
+    dispatch(createExpense(...expenseValue));
+  },
+});
+
+ExpenseInput.propTypes = {
+  saveExpense: func.isRequired,
+};
+
+export default connect(null, mapDispatchToProps)(ExpenseInput);
