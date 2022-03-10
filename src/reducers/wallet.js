@@ -5,7 +5,7 @@ const INITIAL_STATE = {
 
 const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
-  case '@wallet/create-expense':
+  case '@wallet/create-expense-sucess':
     return {
       ...state,
       expenses: [...state.expenses, {
@@ -15,8 +15,19 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
         currency: payload.currency,
         method: payload.method,
         tag: payload.tag,
+        exchangeRates: payload.exchangeRates,
       }],
     };
+
+  case '@wallet/create-expense-error':
+    return {
+      ...state,
+      expenses: [...state.expenses, {
+        id: state.expenses.length,
+        error: payload.error,
+      }],
+    };
+
   default:
     return state;
   }
