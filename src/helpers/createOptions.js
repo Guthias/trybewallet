@@ -1,4 +1,4 @@
-const createOptions = (optionList) => optionList.map((option) => ({
+const createOptions = (optionList = []) => optionList.map((option) => ({
   value: option,
   text: option,
 }));

@@ -1,4 +1,4 @@
-import { getExchangeRates } from '../services/api';
+import * as api from '../services/api';
 
 const CREATE_EXPENSE_SUCESS = '@wallet/create-expense-sucess';
 const CREATE_EXPENSE_ERROR = '@wallet/create-expense-error';
@@ -22,9 +22,19 @@ export const createExpenseError = (errorMessage) => ({
 
 export const createExpense = (expenseValues) => async (dispatch) => {
   try {
-    const exchangeRates = await getExchangeRates();
+    const exchangeRates = await api.getExchangeRates();
     dispatch(createExpenseSucess(expenseValues, exchangeRates));
   } catch (error) {
     dispatch(createExpenseError(error));
   }
+};
+
+const getCurrenciesSucess = (currencies) => ({
+  type: '@wallet/get-currencies',
+  payload: { currencies },
+});
+
+export const fetchGetCurrencies = () => async (dispatch) => {
+  const currencies = await api.getCurrencies();
+  dispatch(getCurrenciesSucess(currencies));
 };

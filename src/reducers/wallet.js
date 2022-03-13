@@ -28,6 +28,11 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       }],
     };
 
+  case '@wallet/get-currencies':
+    return {
+      ...state,
+      currencies: payload.currencies,
+    };
   default:
     return state;
   }

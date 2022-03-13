@@ -7,7 +7,6 @@ import createOptions from '../../helpers/createOptions';
 import Input from '../Input';
 import Select from '../Select';
 
-const currencyList = ['USD', 'BRL', 'EUR'];
 const methodList = ['Dinheiro', 'Cartão de crédito', 'Cartão de débito'];
 const tagList = ['Alimentação', 'Lazer', 'Trabalho', 'Transporte', 'Saúde'];
 
@@ -31,7 +30,7 @@ class ExpenseInput extends Component {
   };
 
   render() {
-    const { value, description, currency, tag, method } = this.state;
+    const { value, description, currency, tag, method, currencyList } = this.state;
 
     return (
       <form>
@@ -88,6 +87,10 @@ class ExpenseInput extends Component {
   }
 }
 
+const mapStateToProps = ({ wallet }) => ({
+  currencyList: wallet.currencies,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   saveExpense: (...expenseValue) => {
     dispatch(createExpense(...expenseValue));
@@ -98,4 +101,4 @@ ExpenseInput.propTypes = {
   saveExpense: func.isRequired,
 };
 
-export default connect(null, mapDispatchToProps)(ExpenseInput);
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseInput);
