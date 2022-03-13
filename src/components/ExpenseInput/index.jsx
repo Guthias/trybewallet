@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func } from 'prop-types';
+import { func, arrayOf, string } from 'prop-types';
 
 import { createExpense } from '../../actions';
 import Input from '../Input';
@@ -26,10 +26,18 @@ class ExpenseInput extends Component {
     const { saveExpense } = this.props;
     event.preventDefault();
     saveExpense(this.state);
+    this.setState({
+      value: '',
+      description: '',
+      currency: '',
+      tag: '',
+      method: '',
+    });
   };
 
   render() {
-    const { value, description, currency, tag, method, currencyList } = this.state;
+    const { value, description, currency, tag, method } = this.state;
+    const { currencyList } = this.props;
 
     return (
       <form>
@@ -98,6 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ExpenseInput.propTypes = {
   saveExpense: func.isRequired,
+  currencyList: arrayOf(string).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseInput);
