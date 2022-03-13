@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { string, func, bool, arrayOf, shape } from 'prop-types';
+import { string, func, bool, arrayOf } from 'prop-types';
 
 export default class Select extends Component {
   renderOptions = () => {
     const { options } = this.props;
-    return options.map(({ value, text }) => (
-      <option key={ value } value={ value }>{ text }</option>));
+    return options.map((value) => (
+      <option key={ value } value={ value }>{ value }</option>));
   }
 
   render() {
@@ -48,6 +48,7 @@ export default class Select extends Component {
 
 Select.defaultProps = {
   dataList: false,
+  options: [],
 };
 
 Select.propTypes = {
@@ -56,9 +57,6 @@ Select.propTypes = {
   value: string.isRequired,
   labelText: string.isRequired,
   handdleChange: func.isRequired,
-  options: arrayOf(shape({
-    value: string.isRequired,
-    text: string.isRequired,
-  })).isRequired,
+  options: arrayOf(string),
   dataList: bool,
 };

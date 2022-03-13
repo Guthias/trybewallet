@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { func } from 'prop-types';
 
 import { createExpense } from '../../actions';
-import createOptions from '../../helpers/createOptions';
 import Input from '../Input';
 import Select from '../Select';
 
@@ -57,7 +56,7 @@ class ExpenseInput extends Component {
           name="currency"
           value={ currency }
           handdleChange={ this.handdleChange }
-          options={ createOptions(currencyList) }
+          options={ currencyList }
           dataList
         />
 
@@ -67,7 +66,7 @@ class ExpenseInput extends Component {
           name="method"
           value={ method }
           handdleChange={ this.handdleChange }
-          options={ createOptions(methodList) }
+          options={ methodList }
           textArea
         />
 
@@ -77,7 +76,7 @@ class ExpenseInput extends Component {
           name="tag"
           value={ tag }
           handdleChange={ this.handdleChange }
-          options={ createOptions(tagList) }
+          options={ tagList }
           dataList
         />
 
