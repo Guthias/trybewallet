@@ -16,6 +16,7 @@ class ExpenseInput extends Component {
     currency: '',
     tag: '',
     method: '',
+    isEditing: false,
   }
 
   handdleChange = ({ target }) => {
@@ -23,21 +24,39 @@ class ExpenseInput extends Component {
   };
 
   saveExpense = (event) => {
+    const { isEditing } = this.state;
     const { saveExpense } = this.props;
     event.preventDefault();
-    saveExpense(this.state);
+
+    if (isEditing) {
+      saveEdit(this.state);
+    } else {
+      saveExpense(this.state);
+    }
+
     this.setState({
       value: '',
       description: '',
       currency: '',
       tag: '',
       method: '',
+      isEditing: false,
     });
   };
 
+  startEdit = () => {
+    const { editExpense} = this.props;
+    const { value, description, currency, tag, method } = editExpense;
+    this.setState({ value, description, currency, tag, method, isEditing: true });
+  }
+
   render() {
     const { value, description, currency, tag, method } = this.state;
-    const { currencyList } = this.props;
+    const { currencyList, editId } = this.props;
+
+    if (!isEditing && editId) {
+      startEdit();
+    }
 
     return (
       <form>
@@ -86,7 +105,9 @@ class ExpenseInput extends Component {
           options={ tagList }
         />
 
-        <button type="submit" onClick={ this.saveExpense }>Adicionar despesa</button>
+        <button type="submit" onClick={ this.saveExpense }>
+          { isEditing ? 'Editar despesa' : 'Adicionar despesa' }
+        </button>
       </form>
     );
   }
@@ -94,11 +115,16 @@ class ExpenseInput extends Component {
 
 const mapStateToProps = ({ wallet }) => ({
   currencyList: wallet.currencies,
+  editId: wallet.editId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   saveExpense: (...expenseValue) => {
     dispatch(createExpense(...expenseValue));
+  },
+
+  saveEditOnState: (...expenseValue) => {
+    dispatch(saveEdit(...expenseValue));
   },
 });
 
