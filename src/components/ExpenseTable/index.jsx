@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux/';
+import { string, arrayOf, shape } from 'prop-types';
 
 class ExpenseTable extends Component {
   render() {
@@ -20,8 +21,11 @@ class ExpenseTable extends Component {
           </tr>
 
           {
-            expenses.map(({ id, description, value, currency, method, tag, exchangeRates }) => {
-              console.log(exchangeRates[currency]);
+            expenses.map(({
+              id, description, value, currency, method, tag, exchangeRates,
+            }) => {
+              const currencyValue = Number(exchangeRates[currency].ask);
+              const expenseValue = Number(currencyValue * value);
               return (
                 <tr key={ id }>
                   <td>{ description }</td>
@@ -29,8 +33,8 @@ class ExpenseTable extends Component {
                   <td>{ method }</td>
                   <td>{ parseFloat(value).toFixed(2) }</td>
                   <td>{ exchangeRates[currency].name }</td>
-                  <td>{ Number(exchangeRates[currency].ask).toFixed(2) }</td>
-                  <td>{ Number(exchangeRates[currency].ask * value).toFixed(2) }</td>
+                  <td>{ currencyValue.toFixed(2) }</td>
+                  <td>{ expenseValue.toFixed(2) }</td>
                   <td>Real</td>
                 </tr>
               );
@@ -41,6 +45,20 @@ class ExpenseTable extends Component {
     );
   }
 }
+
+ExpenseTable.propTypes = {
+  expenses: arrayOf(shape({
+    value: string.isRequired,
+    description: string.isRequired,
+    currency: string.isRequired,
+    method: string.isRequired,
+    tag: string.isRequired,
+    exchangeRates: shape({
+      name: string.isRequired,
+      ask: string.isRequired,
+    }).isRequired,
+  })).isRequired,
+};
 
 const mapStateToProps = ({ wallet }) => ({
   expenses: wallet.expenses,
