@@ -65,7 +65,6 @@ class ExpenseInput extends Component {
           value={ currency }
           handdleChange={ this.handdleChange }
           options={ currencyList }
-          dataList
         />
 
         <Select
@@ -85,7 +84,6 @@ class ExpenseInput extends Component {
           value={ tag }
           handdleChange={ this.handdleChange }
           options={ tagList }
-          dataList
         />
 
         <button type="submit" onClick={ this.saveExpense }>Adicionar despesa</button>

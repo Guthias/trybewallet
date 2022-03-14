@@ -6,7 +6,7 @@ const CREATE_EXPENSE_ERROR = '@wallet/create-expense-error';
 export const createExpenseSucess = (expenseValues, exchangeRates) => ({
   type: CREATE_EXPENSE_SUCESS,
   payload: {
-    value: Number(expenseValues.value),
+    value: expenseValues.value,
     description: expenseValues.description,
     currency: expenseValues.currency,
     method: expenseValues.method,
@@ -15,9 +15,9 @@ export const createExpenseSucess = (expenseValues, exchangeRates) => ({
   },
 });
 
-export const createExpenseError = (errorMessage) => ({
+export const createExpenseError = (error) => ({
   type: CREATE_EXPENSE_ERROR,
-  payload: { error: errorMessage },
+  payload: { error },
 });
 
 export const createExpense = (expenseValues) => async (dispatch) => {
@@ -31,6 +31,10 @@ const getCurrenciesSucess = (currencies) => ({
 });
 
 export const fetchGetCurrencies = () => async (dispatch) => {
-  const currencies = await api.getCurrencies();
-  dispatch(getCurrenciesSucess(currencies));
+  try {
+    const currencies = await api.getCurrencies();
+    dispatch(getCurrenciesSucess(currencies));
+  } catch (error) {
+    dispatch(createExpenseError(error));
+  }
 };
