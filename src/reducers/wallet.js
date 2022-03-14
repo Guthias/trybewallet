@@ -19,15 +19,6 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       }],
     };
 
-  case '@wallet/create-expense-error':
-    return {
-      ...state,
-      expenses: [...state.expenses, {
-        id: state.expenses.length,
-        error: payload.error,
-      }],
-    };
-
   case '@wallet/get-currencies':
     return {
       ...state,

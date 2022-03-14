@@ -27,7 +27,11 @@ class Header extends Component {
 
 const mapStateToProps = ({ user, wallet }) => ({
   email: user.email,
-  expenses: wallet.expenses.reduce((acc, { value }) => acc + value, 0),
+  expenses: wallet.expenses.reduce((acc, { value, currency, exchangeRates }) => {
+    const currencyValue = exchangeRates[currency].ask;
+    console.log(currencyValue);
+    return acc + (Number(value) * currencyValue);
+  }, 0),
 });
 
 Header.defaultProps = {

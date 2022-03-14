@@ -21,12 +21,8 @@ export const createExpenseError = (errorMessage) => ({
 });
 
 export const createExpense = (expenseValues) => async (dispatch) => {
-  try {
-    const exchangeRates = await api.getExchangeRates();
-    dispatch(createExpenseSucess(expenseValues, exchangeRates));
-  } catch (error) {
-    dispatch(createExpenseError(error));
-  }
+  const exchangeRates = await api.getExchangeRates();
+  dispatch(createExpenseSucess(expenseValues, exchangeRates));
 };
 
 const getCurrenciesSucess = (currencies) => ({
