@@ -45,7 +45,7 @@ export const deleteExpense = (id) => ({
   payload: { id },
 });
 
-export const startEditExpsne = (id) => ({
+export const startEditExpense = (id) => ({
   type: '@wallet/start-edit-expense',
   payload: { id },
 });

@@ -89,7 +89,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   editExpense: (id) => {
-    dispatch(action.startEditExpsne(id));
+    dispatch(action.startEditExpense(id));
   },
 });
 

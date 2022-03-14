@@ -1,7 +1,8 @@
 import { userLogin } from './user';
-import { createExpense } from './wallet';
+import { createExpense, saveEdit } from './wallet';
 
 export {
   userLogin,
   createExpense,
+  saveEdit,
 };

@@ -25,11 +25,11 @@ class ExpenseInput extends Component {
 
   saveExpense = (event) => {
     const { isEditing } = this.state;
-    const { saveExpense } = this.props;
+    const { saveExpense, saveEditOnState } = this.props;
     event.preventDefault();
 
     if (isEditing) {
-      saveEdit(this.state);
+      saveEditOnState(this.state);
     } else {
       saveExpense(this.state);
     }
@@ -51,11 +51,11 @@ class ExpenseInput extends Component {
   }
 
   render() {
-    const { value, description, currency, tag, method } = this.state;
+    const { value, description, currency, tag, method, isEditing } = this.state;
     const { currencyList, editId } = this.props;
 
     if (!isEditing && editId) {
-      startEdit();
+      this.startEdit();
     }
 
     return (
@@ -116,6 +116,7 @@ class ExpenseInput extends Component {
 const mapStateToProps = ({ wallet }) => ({
   currencyList: wallet.currencies,
   editId: wallet.editId,
+  editExpense: wallet.expenses.find(({ id }) => id === wallet.editId),
 });
 
 const mapDispatchToProps = (dispatch) => ({
