@@ -25,6 +25,12 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       currencies: payload.currencies,
     };
 
+  case '@wallet/delete-expense':
+    return {
+      ...state,
+      expenses: state.expenses.filter(({ id }) => id === payload.id),
+    };
+
   default:
     return state;
   }

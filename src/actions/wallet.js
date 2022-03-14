@@ -2,6 +2,7 @@ import * as api from '../services/api';
 
 const CREATE_EXPENSE_SUCESS = '@wallet/create-expense-sucess';
 const CREATE_EXPENSE_ERROR = '@wallet/create-expense-error';
+const DELETE_EXPENSE = '@wallet/delete-expense';
 
 export const createExpenseSucess = (expenseValues, exchangeRates) => ({
   type: CREATE_EXPENSE_SUCESS,
@@ -38,3 +39,8 @@ export const fetchGetCurrencies = () => async (dispatch) => {
     dispatch(createExpenseError(error));
   }
 };
+
+export const delteExpense = (id) => ({
+  type: DELETE_EXPENSE,
+  payload: { id },
+});
