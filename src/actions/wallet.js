@@ -40,7 +40,7 @@ export const fetchGetCurrencies = () => async (dispatch) => {
   }
 };
 
-export const delteExpense = (id) => ({
+export const deleteExpense = (id) => ({
   type: DELETE_EXPENSE,
   payload: { id },
 });
