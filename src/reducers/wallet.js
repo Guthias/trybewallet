@@ -24,6 +24,7 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       ...state,
       currencies: payload.currencies,
     };
+
   default:
     return state;
   }
