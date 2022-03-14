@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  editId: null,
 };
 
 const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -29,6 +30,12 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       expenses: state.expenses.filter(({ id }) => id !== payload.id),
+    };
+
+  case '@wallet/start-edit-expense':
+    return {
+      ...state,
+      editId: id,
     };
 
   default:
