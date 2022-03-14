@@ -49,3 +49,14 @@ export const startEditExpsne = (id) => ({
   type: '@wallet/start-edit-expense',
   payload: { id },
 });
+
+export const saveEdit = (expenseValues) => ({
+  type: '@wallet/save-edit',
+  payload: {
+    value: expenseValues.value,
+    description: expenseValues.description,
+    currency: expenseValues.currency,
+    method: expenseValues.method,
+    tag: expenseValues.tag,
+  },
+});

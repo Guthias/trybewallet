@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { func, arrayOf, string } from 'prop-types';
 
-import { createExpense } from '../../actions';
+import { createExpense, saveEdit } from '../../actions';
 import Input from '../Input';
 import Select from '../Select';
 
