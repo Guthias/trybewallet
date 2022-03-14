@@ -20,15 +20,21 @@ class ExpenseTable extends Component {
           </tr>
 
           {
-            expenses.map(({ id, description, value, currency, method, tag }) => (
-              <tr key={ id }>
-                <td>{ description }</td>
-                <td>{ tag }</td>
-                <td>{ method }</td>
-                <td>{ value }</td>
-                <td>{ currency }</td>
-              </tr>
-            ))
+            expenses.map(({ id, description, value, currency, method, tag, exchangeRates }) => {
+              console.log(exchangeRates[currency]);
+              return (
+                <tr key={ id }>
+                  <td>{ description }</td>
+                  <td>{ tag }</td>
+                  <td>{ method }</td>
+                  <td>{ parseFloat(value).toFixed(2) }</td>
+                  <td>{ exchangeRates[currency].name }</td>
+                  <td>{ Number(exchangeRates[currency].ask).toFixed(2) }</td>
+                  <td>{ Number(exchangeRates[currency].ask * value).toFixed(2) }</td>
+                  <td>Real</td>
+                </tr>
+              );
+            })
           }
         </table>
       </div>
