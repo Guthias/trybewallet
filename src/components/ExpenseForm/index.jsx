@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func, arrayOf, string } from 'prop-types';
+import { func, arrayOf, string, number, shape } from 'prop-types';
 
 import { createExpense, saveEdit } from '../../actions';
 import Input from '../Input';
@@ -45,7 +45,7 @@ class ExpenseInput extends Component {
   };
 
   startEdit = () => {
-    const { editExpense} = this.props;
+    const { editExpense } = this.props;
     const { value, description, currency, tag, method } = editExpense;
     this.setState({ value, description, currency, tag, method, isEditing: true });
   }
@@ -132,6 +132,15 @@ const mapDispatchToProps = (dispatch) => ({
 ExpenseInput.propTypes = {
   saveExpense: func.isRequired,
   currencyList: arrayOf(string).isRequired,
+  editId: number.isRequired,
+  editExpense: arrayOf(shape({
+    value: string.isRequired,
+    description: string.isRequired,
+    currency: string.isRequired,
+    tag: string.isRequired,
+    method: string.isRequired,
+  })).isRequired,
+  saveEditOnState: func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpenseInput);

@@ -5,6 +5,9 @@ const INITIAL_STATE = {
 };
 
 const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
+  let newExpenses;
+  let editItem;
+  let itemIndex;
   switch (type) {
   case '@wallet/create-expense-sucess':
     return {
@@ -33,15 +36,12 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
     };
 
   case '@wallet/start-edit-expense':
-    return {
-      ...state,
-      editId: payload.id,
-    };
+    return { ...state, editId: payload.id };
 
   case '@wallet/save-edit':
-    const newExpenses = [...state.expenses];
-    const editItem = newExpenses.find(({ id }) => state.editId);
-    const itemIndex = newExpenses.indexOf(editItem);
+    newExpenses = [...state.expenses];
+    editItem = newExpenses.find(({ id }) => state.editId === id);
+    itemIndex = newExpenses.indexOf(editItem);
     newExpenses[itemIndex] = {
       ...editItem,
       value: payload.value,
@@ -51,11 +51,7 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
       tag: payload.tag,
     };
 
-    return {
-      ...state,
-      editId: null,
-      expenses: newExpenses,
-    };
+    return { ...state, editId: null, expenses: newExpenses };
   default:
     return state;
   }
