@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux/';
 import { string, arrayOf, shape, func } from 'prop-types';
-import { deleteExpense as deleteExpenseAction } from '../../actions/wallet';
+import * as action from '../../actions/wallet';
 
 class ExpenseTable extends Component {
   render() {
-    const { expenses, deleteExpense } = this.props;
+    const { expenses, deleteExpense, editExpense } = this.props;
     return (
       <div>
         <table>
@@ -47,6 +47,14 @@ class ExpenseTable extends Component {
                       >
                         Excluir
                       </button>
+
+                      <button
+                        type="button"
+                        data-testid="edot-btn"
+                        onClick={ () => { editExpense(id); } }
+                      >
+                        Editar
+                      </button>
                     </td>
                   </tr>
                 );
@@ -72,11 +80,16 @@ ExpenseTable.propTypes = {
     }).isRequired,
   })).isRequired,
   deleteExpense: func.isRequired,
+  editExpense: func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpense: (id) => {
-    dispatch(deleteExpenseAction(id));
+    dispatch(action.deleteExpense(id));
+  },
+
+  editExpense: (id) => {
+    dispatch(action.startEditExpsne(id));
   },
 });
 

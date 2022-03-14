@@ -35,7 +35,7 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
   case '@wallet/start-edit-expense':
     return {
       ...state,
-      editId: id,
+      editId: payload.id,
     };
 
   default:
