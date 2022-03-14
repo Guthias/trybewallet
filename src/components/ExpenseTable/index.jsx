@@ -8,38 +8,41 @@ class ExpenseTable extends Component {
     return (
       <div>
         <table>
-          <tr>
-            <th>Descrição</th>
-            <th>Tag</th>
-            <th>Método de pagamento</th>
-            <th>Valor</th>
-            <th>Moeda</th>
-            <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
-            <th>Moeda de conversão</th>
-            <th>Editar/Excluir</th>
-          </tr>
-
-          {
-            expenses.map(({
-              id, description, value, currency, method, tag, exchangeRates,
-            }) => {
-              const currencyValue = Number(exchangeRates[currency].ask);
-              const expenseValue = Number(currencyValue * value);
-              return (
-                <tr key={ id }>
-                  <td>{ description }</td>
-                  <td>{ tag }</td>
-                  <td>{ method }</td>
-                  <td>{ parseFloat(value).toFixed(2) }</td>
-                  <td>{ exchangeRates[currency].name }</td>
-                  <td>{ currencyValue.toFixed(2) }</td>
-                  <td>{ expenseValue.toFixed(2) }</td>
-                  <td>Real</td>
-                </tr>
-              );
-            })
-          }
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              expenses.map(({
+                id, description, value, currency, method, tag, exchangeRates,
+              }) => {
+                const currencyValue = Number(exchangeRates[currency].ask);
+                const expenseValue = Number(currencyValue * value);
+                return (
+                  <tr key={ id }>
+                    <td>{ description }</td>
+                    <td>{ tag }</td>
+                    <td>{ method }</td>
+                    <td>{ parseFloat(value).toFixed(2) }</td>
+                    <td>{ exchangeRates[currency].name }</td>
+                    <td>{ currencyValue.toFixed(2) }</td>
+                    <td>{ expenseValue.toFixed(2) }</td>
+                    <td>Real</td>
+                  </tr>
+                );
+              })
+            }
+          </tbody>
         </table>
       </div>
     );
