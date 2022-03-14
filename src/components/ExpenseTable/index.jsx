@@ -42,18 +42,18 @@ class ExpenseTable extends Component {
                     <td>
                       <button
                         type="button"
-                        data-testid="delete-btn"
-                        onClick={ () => { deleteExpense(id); } }
+                        data-testid="edit-btn"
+                        onClick={ () => { editExpense(id); } }
                       >
-                        Excluir
+                        Editar
                       </button>
 
                       <button
                         type="button"
-                        data-testid="edot-btn"
-                        onClick={ () => { editExpense(id); } }
+                        data-testid="delete-btn"
+                        onClick={ () => { deleteExpense(id); } }
                       >
-                        Editar
+                        Excluir
                       </button>
                     </td>
                   </tr>
