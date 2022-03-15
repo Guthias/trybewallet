@@ -13,7 +13,7 @@ const walletReducer = (state = INITIAL_STATE, { type, payload }) => {
     return {
       ...state,
       expenses: [...state.expenses, {
-        id: state.expenses.length + 1,
+        id: state.expenses.length,
         value: payload.value,
         description: payload.description,
         currency: payload.currency,
