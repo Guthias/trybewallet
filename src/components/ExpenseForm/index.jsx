@@ -52,9 +52,9 @@ class ExpenseInput extends Component {
 
   render() {
     const { value, description, currency, tag, method, isEditing } = this.state;
-    const { currencyList, editId } = this.props;
+    const { currencyList, editId, editExpense } = this.props;
 
-    if (!isEditing && editId) {
+    if (!isEditing && editId !== null && editExpense) {
       this.startEdit();
     }
 
